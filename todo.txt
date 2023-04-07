@@ -1,11 +1,30 @@
 Pantalla Inicial
+	nombre del juego [listo]
+	musiquita (se debe poder quitar)
+	pagina de opciones
+		configurar nombre del jugador y dificultad
+			se debe retroalimentar al usuario nivel de dificultad
+	acceder a pantalla de puntajes [listo]
+	acceder a pantalla de juego [listo]
+	acceder a pantalla de informacion complementaria [listo]
 Pantalla Información complementaria
-	Información completa
-	Retorno a pantalla de inicio
+	Acerca del Autor [listo]
+		nombre [listo]
+		foto [listo]
+		identificacion (carne?) [listo]
+	ITCR [listo]
+	asignatura [listo]
+	carrera [listo]
+	Ano [listo]
+	Profesor [listo]
+	Pais de produccion [listo]
+	version del programa [listo]
+	info importante para buen uso del programa
+	Retorno a pantalla de inicio [listo]
 Pantalla de mejores puntajes
-	Muestra mejores puntajes
-	Se actualiza correctamente
-	Mejores puntajes se mantienen al cerrar y abrir el juego
+	Muestra 7 mejores puntajes
+	Se actualiza cuando se termina el juego o se cambia de jugador
+	Mejores puntajes se mantienen al cerrar y abrir el juego (txt file)
 Sonidos
 	Sonidos as
 	Música de fondo en pantalla de juego y pantalla principal
@@ -14,6 +33,7 @@ Pantalla de juego
 	Muestra indicador de puntaje
 	Muestra indicador de tiempo
 	Muestra nombre del jugador
+	muestra # de enemigos en pantalla (1 a 9)
 	Se le comunica al jugador cuando pierde/gana
 	Si el jugador obtiene uno de los 5 mejores puntajes, se le comunica el puntaje y su posición
 	Botón de regreso a pantalla principal
@@ -40,6 +60,29 @@ Colisiones
 	Detecta colisiones con los bloques
 	Detecta los disparos
 Documentación
-	Documento externo
-	Video
+	Documento externo (pdf)
+		Tabla de contenidos
+		Introducción
+		Descripción del problema
+		Análisis de resultados: aquí debe agregar, entre otras cosas propias del capítulo de Resultados, screenshots de la aplicación funcionando para cada uno de los posibles escenarios.
+		Dificultades encontradas: problemas en el desarrollo y qué se hizo para corregirlos
+		Bitácora de actividades: se deben ir anotando todas las actividades, tipo de actividad, su descripción y duración.
+		Estadística de tiempos: un cuadro que muestre un resumen de la bitácora.
+		Conclusión
+		Literatura o Fuentes Consultadas
+	Video explicando juego
 	Documentación interna (código)
+Spec
+	balas ilimitadas, se dispara con una tecla
+	jugador se mueve con las flechas o wasd
+	bala termina en limite del tablero
+	Si en trayectoria de las balas hay X enemigos, gana X^2 puntos por hit
+	bala tiene que tener frecuencia de disparo para que no sea un rayo laser
+	si bala enemiga choca con bala propia, se anulan
+	enemigos aparecen mas rapido/frecuentemente dependiendo de dificultad
+	3 niveles de dificultad, mas dificil mas puntos gana por enemigo matado
+		+ dificultad, + enemigos, + dificiles, + aleatorios, + restricciones (menos vida, velocidad etc.)
+	no usar iteracion, solo recursividad		
+	nave tiene 3 vidas
+		pierde vida cada vez que toca enemigo
+		pierde vida cada vez que toca bala enemiga
