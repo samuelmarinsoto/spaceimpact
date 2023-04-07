@@ -1,0 +1,45 @@
+Pantalla Inicial
+Pantalla Información complementaria
+	Información completa
+	Retorno a pantalla de inicio
+Pantalla de mejores puntajes
+	Muestra mejores puntajes
+	Se actualiza correctamente
+	Mejores puntajes se mantienen al cerrar y abrir el juego
+Sonidos
+	Sonidos as
+	Música de fondo en pantalla de juego y pantalla principal
+	Manejo de cambios de música de fondo al cambiar de pantalla
+Pantalla de juego
+	Muestra indicador de puntaje
+	Muestra indicador de tiempo
+	Muestra nombre del jugador
+	Se le comunica al jugador cuando pierde/gana
+	Si el jugador obtiene uno de los 5 mejores puntajes, se le comunica el puntaje y su posición
+	Botón de regreso a pantalla principal
+	Muestra fondo agradable y aspecto de imagen solicitado
+Jugador
+	Jugador puede moverse en las 4 direcciones sin salirse de la pantalla
+	Jugador puede manipular movimiento izquierda-derecha
+	Jugador puede manipular movimiento arriba abajo
+Nivel 1
+	Identifica el nivel en pantalla
+	La duración del nivel es adecuada
+	Bonus al completar nivel
+Nivel 2
+	Puntaje por segundo adecuado
+	Identifica el nivel en pantalla
+	La duración del nivel es adecuada
+	Bonus al completar nivel
+Nivel 3
+	Puntaje por segundo adecuado
+	Identifica el nivel en pantalla
+	La duración del nivel es adecuada
+	Bonus al completar nivel
+Colisiones
+	Detecta colisiones con los bloques
+	Detecta los disparos
+Documentación
+	Documento externo
+	Video
+	Documentación interna (código)
