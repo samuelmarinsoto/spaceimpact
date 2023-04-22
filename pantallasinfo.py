@@ -1,7 +1,7 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 import pygame
-
+import juego as j
 	
 def pantallainicial():
 	# abre ventana, con fondo bonito
@@ -27,6 +27,10 @@ def pantallainicial():
 	mmenu = tk.Frame(menu)
 	mmenu.pack()
 	mmenu.configure(bg="Black")
+
+	def jugar():
+		menu.destroy()
+		j.inicio()
 
 	# los botones van separados, con colores, y ejecutan las funciones para las otras ventanas
 	bjugar = tk.Button(mmenu, text="Jugar", font=('Arial', 18), command=jugar)
