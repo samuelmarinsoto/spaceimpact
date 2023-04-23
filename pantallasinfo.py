@@ -11,7 +11,7 @@ def pantallainicial():
 		
 	menu.configure(bg="Black")
 	menu.title("SPACE IMPACT REMIX")
-	menu.geometry("800x600")
+	menu.geometry("800x800")
 
 	mnombre = tk.Frame(menu)
 	mnombre.pack(side=tk.TOP)
@@ -101,10 +101,7 @@ def pantallainicial():
 	bsalir.pack(pady=10)
 	
 	menu.mainloop()
-		
-def jugar():
-	return 1+1
-	
+			
 def opciones():
 	return 1+1
 	
