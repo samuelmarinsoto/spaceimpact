@@ -30,35 +30,35 @@ Sonidos
 	Música de fondo en pantalla de juego y pantalla principal
 	Manejo de cambios de música de fondo al cambiar de pantalla
 Pantalla de juego
-	Muestra indicador de puntaje
-	Muestra indicador de tiempo
-	Muestra nombre del jugador
+	Muestra indicador de puntaje [listo]
+	Muestra indicador de tiempo [listo]
+	Muestra nombre del jugador [listo]
 	muestra # de enemigos en pantalla (1 a 9)
 	Se le comunica al jugador cuando pierde/gana
 	Si el jugador obtiene uno de los 5 mejores puntajes, se le comunica el puntaje y su posición
 	Botón de regreso a pantalla principal
 	Muestra fondo agradable y aspecto de imagen solicitado
 Jugador
-	Jugador puede moverse en las 4 direcciones sin salirse de la pantalla
-	Jugador puede manipular movimiento izquierda-derecha
-	Jugador puede manipular movimiento arriba abajo
+	Jugador puede moverse en las 4 direcciones sin salirse de la pantalla [listo]
+	Jugador puede manipular movimiento izquierda-derecha [listo]
+	Jugador puede manipular movimiento arriba abajo [listo]
 Nivel 1
-	Identifica el nivel en pantalla
-	La duración del nivel es adecuada
-	Bonus al completar nivel
+	Identifica el nivel en pantalla [listo]
+	La duración del nivel es adecuada [listo]
+	Bonus al completar nivel [listo]
 Nivel 2
-	Puntaje por segundo adecuado
-	Identifica el nivel en pantalla
-	La duración del nivel es adecuada
-	Bonus al completar nivel
+	Puntaje por segundo adecuado [listo]
+	Identifica el nivel en pantalla [listo]
+	La duración del nivel es adecuada [listo]
+	Bonus al completar nivel [listo]
 Nivel 3
-	Puntaje por segundo adecuado
-	Identifica el nivel en pantalla
-	La duración del nivel es adecuada
+	Puntaje por segundo adecuado [listo]
+	Identifica el nivel en pantalla [listo]
+	La duración del nivel es adecuada [listo]
 	Bonus al completar nivel
 Colisiones
-	Detecta colisiones con los bloques
-	Detecta los disparos
+	Detecta colisiones con los bloques [listo]
+	Detecta los disparos [listo]
 Documentación
 	Documento externo (pdf)
 		Tabla de contenidos
@@ -73,16 +73,16 @@ Documentación
 	Video explicando juego
 	Documentación interna (código)
 Spec
-	balas ilimitadas, se dispara con una tecla
-	jugador se mueve con las flechas o wasd
-	bala termina en limite del tablero
+	balas ilimitadas, se dispara con una tecla [listo]
+	jugador se mueve con las flechas o wasd [listo]
+	bala termina en limite del tablero [listo]
 	Si en trayectoria de las balas hay X enemigos, gana X^2 puntos por hit
-	bala tiene que tener frecuencia de disparo para que no sea un rayo laser
+	bala tiene que tener frecuencia de disparo para que no sea un rayo laser [listo]
 	si bala enemiga choca con bala propia, se anulan
-	enemigos aparecen mas rapido/frecuentemente dependiendo de dificultad
-	3 niveles de dificultad, mas dificil mas puntos gana por enemigo matado
+	enemigos aparecen mas rapido/frecuentemente dependiendo de dificultad [listo]
+	3 niveles de dificultad, mas dificil mas puntos gana por enemigo matado [listo]
 		+ dificultad, + enemigos, + dificiles, + aleatorios, + restricciones (menos vida, velocidad etc.)
 	no usar iteracion, solo recursividad		
-	nave tiene 3 vidas
-		pierde vida cada vez que toca enemigo
+	nave tiene 3 vidas [listo]
+		pierde vida cada vez que toca enemigo [listo]
 		pierde vida cada vez que toca bala enemiga
