@@ -52,7 +52,7 @@ def inicio():
     marcoestat.pack(side=tk.TOP, fill=tk.X)
     
     #TODO fondo de estrellitas
-    lienzo = tk.Canvas(venjuego, width=1920, height=1000, bg="black")
+    lienzo = tk.Canvas(venjuego, width=1920, height=1040, bg="black")
     lienzo.pack()
 
     global nombre
@@ -82,6 +82,8 @@ def inicio():
     phbala = ImageTk.PhotoImage(Image.open("bala.png"))
     phberde = ImageTk.PhotoImage(Image.open("bichoberde.png")) # pyimage5
     phrojo = ImageTk.PhotoImage(Image.open("bichorojo.png")) # pyimage6
+    phmarsiano = ImageTk.PhotoImage(Image.open("marsiano.png")) # pyimage7
+    phmisil = ImageTk.PhotoImage(Image.open("misil.png")) # pyimage8
 
     jugador = lienzo.create_image(150, 540, image=phjugador)
 
@@ -267,7 +269,7 @@ def inicio():
 
 
     def marsiano():
-        bicho = lienzo.create_image(random.randint(1920, 2000), random.randint(50, 950), image=color)
+        bicho = lienzo.create_image(random.randint(1800, 1900), random.randint(100, 900), image=phmarsiano)
 
         global enemikos
         enemikos += [bicho]
@@ -277,49 +279,49 @@ def inicio():
         else:
             yveloz = -6
 
-        def disparo():
-        	coord = lienzo.bbox(bicho)
-        	bala = lienzo.create_image(coord[2], coord[3]-50, image=phbalamarsiano)
-
-        	global enemikos
-        	enemikos += [bala]
-        	
-        	def bala_mov():
-        	    global amikos
-        		coord = lienzo.bbox(bala)
-        		while (coord != None) and (coord[2] >= lienzo.winfo_width()) and not (colisiones(amikos, bala)):
-        			lienzo.move(bala, -6, 0)
-        			time.sleep(0.01)
-        			coord = lienzo.bbox(bala)
-        		if coord == None or coord[2] < 0:
-        		    lienzo.delete(bala)
-        		    reciclaje(bala, 0, 0)
-        		
-        	bala_hilo = Thread(target=bala_mov)
-        	bala_hilo.daemon = True
-        	bala_hilo.start()
-
         def mov(yveloz):
             global amikos
             coord = lienzo.bbox(bicho)
-            i == 0
+            i = 0
             
+            def disparo():
+            	bala = lienzo.create_image(coord[0], coord[3]-37, image=phmisil)
+
+            	global enemikos
+            	enemikos += [bala]
+
+            	def bala_mov():
+            		global amikos
+            		coord = lienzo.bbox(bala)
+
+            		while (coord != None) and (coord[2] >= 0) and not (colisiones(amikos, bala)):
+            			lienzo.move(bala, -12, 0)
+            			time.sleep(0.01)
+            			coord = lienzo.bbox(bala)
+            		if coord == None or coord[2] < 0:
+            			lienzo.delete(bala)
+            			reciclaje(bala, 0, 0)
+
+            	bala_hilo = Thread(target=bala_mov)
+            	bala_hilo.daemon = True
+            	bala_hilo.start()
+
             while (coord != None) and not (colisiones(amikos, bicho)) and coord[2] > 0:
                 global dificultad
                 
-                if int(dificultad/60) < 1:
+                if dificultad > 120 and dificultad < 150:
                     if i > 1:
                         i = 0
                         disparo_hilo = Thread(target=disparo)
                         disparo_hilo.daemon = True
                         disparo_hilo.start()
-                if int(dificultad/60) < 2:
+                if dificultad > 150 and dificultad < 180:
                     if i > 0.5:
                         i = 0
                         disparo_hilo = Thread(target=disparo)
                         disparo_hilo.daemon = True
                         disparo_hilo.start()
-                if int(dificultad/60) < 3:
+                if dificultad > 180:
                     if i > 0.25:
                         i = 0
                         disparo_hilo = Thread(target=disparo)
@@ -332,11 +334,14 @@ def inicio():
                 time.sleep(0.01)
                 coord = lienzo.bbox(bicho)
                 i += 0.01
-                
+
             global puntaje
-            global dificultad
             puntaje += dificultad*10
             estat()
+
+        mov_hilo = Thread(target=mov, args=[yveloz])
+        mov_hilo.daemon = True
+        mov_hilo.start()
             
         
     def gen_berde():
@@ -362,9 +367,22 @@ def inicio():
                     birus(phrojo)
                     i += 100
             else:
-                time.sleep(5)
+                time.sleep(3)
 
-		
+    def gen_marsiano():
+    	global dificultad
+    	i = 1
+    	while dificultad:
+    		if dificultad/60 > 2:
+    			if i > dificultad:
+    				i = 1
+    				time.sleep(5)
+    			else:
+    				marsiano()
+    				i += 200
+    		else:
+    			time.sleep(5)
+				
     def hilos():
         dif_hilo = Thread(target=mas_dificil)
         dif_hilo.daemon = True
@@ -385,6 +403,10 @@ def inicio():
         rojo_hilo = Thread(target=gen_rojo)
         rojo_hilo.daemon = True
         rojo_hilo.start()
+
+        marsiano_hilo = Thread(target=gen_marsiano)
+        marsiano_hilo.daemon = True
+        marsiano_hilo.start()
         
     hilos()
     venjuego.mainloop()
