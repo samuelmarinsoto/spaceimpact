@@ -55,7 +55,7 @@ Nivel 3
 	Puntaje por segundo adecuado [listo]
 	Identifica el nivel en pantalla [listo]
 	La duración del nivel es adecuada [listo]
-	Bonus al completar nivel
+	Bonus al completar nivel [listo]
 Colisiones
 	Detecta colisiones con los bloques [listo]
 	Detecta los disparos [listo]
@@ -78,11 +78,11 @@ Spec
 	bala termina en limite del tablero [listo]
 	Si en trayectoria de las balas hay X enemigos, gana X^2 puntos por hit
 	bala tiene que tener frecuencia de disparo para que no sea un rayo laser [listo]
-	si bala enemiga choca con bala propia, se anulan
+	si bala enemiga choca con bala propia, se anulan [listo]
 	enemigos aparecen mas rapido/frecuentemente dependiendo de dificultad [listo]
 	3 niveles de dificultad, mas dificil mas puntos gana por enemigo matado [listo]
-		+ dificultad, + enemigos, + dificiles, + aleatorios, + restricciones (menos vida, velocidad etc.)
+		+ dificultad, + enemigos, + dificiles, + aleatorios, + restricciones (menos vida, velocidad etc.) [listo]
 	no usar iteracion, solo recursividad		
 	nave tiene 3 vidas [listo]
 		pierde vida cada vez que toca enemigo [listo]
-		pierde vida cada vez que toca bala enemiga
+		pierde vida cada vez que toca bala enemiga [listo]
