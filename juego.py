@@ -47,7 +47,7 @@ def pantallainicial():
 	menu = tk.Tk()
 	for widget in menu.winfo_children():
 		widget.pack_forget()
-			
+    
 	menu.configure(bg="Black")
 	menu.title("SPACE IMPACT REMIX")
 	menu.geometry("800x800")
@@ -308,12 +308,11 @@ def inicio():
     pygame.mixer.music.unload()
     pygame.mixer.music.load("juego.ogg")
     pygame.mixer.music.play()
-
+	
     marcoestad = tk.Frame(venjuego)
     marcoestad.pack(side=tk.TOP, fill=tk.X)
-    
-    #TODO fondo de estrellitas
-    lienzo = tk.Canvas(venjuego, width=1920, height=1040, bg="black")
+   
+    lienzo = tk.Canvas(venjuego, width=1920, height=1040)
     lienzo.pack()
 
     global nombre
