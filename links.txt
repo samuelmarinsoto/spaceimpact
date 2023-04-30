@@ -1,0 +1,5 @@
+https://invidious.chunboan.zone/watch?v=9aKIkh4gfqs # musica menu
+https://invidious.chunboan.zone/watch?v=vBK0bxuDfs8&list=PL9JuFiYPkN3kOw5BDfWQ6bqI8jo9R7Odp&index=4 # musica juego
+https://invidious.chunboan.zone/watch?v=ugz0vr3Eeik&list=PL9JuFiYPkN3kOw5BDfWQ6bqI8jo9R7Odp&index=5&autoplay=1 # musica gameover
+https://invidious.chunboan.zone/watch?v=IpRWVqQm5YU # sonido misil
+https://invidious.chunboan.zone/watch?v=FuvmTL1nPDs # sonido laser

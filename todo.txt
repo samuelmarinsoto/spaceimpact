@@ -1,9 +1,9 @@
 Pantalla Inicial
 	nombre del juego [listo]
 	musiquita (se debe poder quitar)
-	pagina de opciones
-		configurar nombre del jugador y dificultad
-			se debe retroalimentar al usuario nivel de dificultad
+	pagina de opciones [listo]
+		configurar nombre del jugador y dificultad [listo]
+			se debe retroalimentar al usuario nivel de dificultad [listo]
 	acceder a pantalla de puntajes [listo]
 	acceder a pantalla de juego [listo]
 	acceder a pantalla de informacion complementaria [listo]
@@ -22,21 +22,21 @@ Pantalla Información complementaria
 	info importante para buen uso del programa
 	Retorno a pantalla de inicio [listo]
 Pantalla de mejores puntajes
-	Muestra 7 mejores puntajes
-	Se actualiza cuando se termina el juego o se cambia de jugador
+	Muestra 7 mejores puntajes [listo]
+	Se actualiza cuando se termina el juego o se cambia de jugador [listo]
 	Mejores puntajes se mantienen al cerrar y abrir el juego (txt file)
 Sonidos
 	Sonidos as
-	Música de fondo en pantalla de juego y pantalla principal
-	Manejo de cambios de música de fondo al cambiar de pantalla
+	Música de fondo en pantalla de juego y pantalla principal [listo]
+	Manejo de cambios de música de fondo al cambiar de pantalla [listo]
 Pantalla de juego
 	Muestra indicador de puntaje [listo]
 	Muestra indicador de tiempo [listo]
 	Muestra nombre del jugador [listo]
-	muestra # de enemigos en pantalla (1 a 9)
-	Se le comunica al jugador cuando pierde/gana
+	muestra # de enemigos en pantalla (1 a 9) [listo]
+	Se le comunica al jugador cuando pierde/gana [listo]
 	Si el jugador obtiene uno de los 5 mejores puntajes, se le comunica el puntaje y su posición
-	Botón de regreso a pantalla principal
+	Botón de regreso a pantalla principal [listo]
 	Muestra fondo agradable y aspecto de imagen solicitado
 Jugador
 	Jugador puede moverse en las 4 direcciones sin salirse de la pantalla [listo]
