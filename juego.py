@@ -312,7 +312,7 @@ def inicio():
     marcoestad = tk.Frame(venjuego)
     marcoestad.pack(side=tk.TOP, fill=tk.X)
    
-    lienzo = tk.Canvas(venjuego, width=1920, height=1040)
+    lienzo = tk.Canvas(venjuego, width=1920, height=1040, bg="black")
     lienzo.pack()
 
     global nombre
