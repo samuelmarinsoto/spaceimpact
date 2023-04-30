@@ -5,37 +5,23 @@ from PIL import Image, ImageTk
 from threading import Thread
 import pygame
 
-# TODO: lista global de todas las balas amikas y otra lista global con todas las balas enemikas. 
-#
-# Al meter una imagen en el lienzo, la funcion lienzo.create_image retorna un entero para identificar 
-# a la imagen, y este se puede usar con otras funciones del lienzo para ver coordenadas y borrar la imagen. 
-#
-# nuevas balas se anaden a las listas con concatenacion.
-#
-# los enemikos checkean (a travez de una funcion externa talvez) si alguna bala de la lista de balas amikas los toco
-# (itera sobre toda la lista, checkeando las coords de cada elemento con lienzo.bbox). si los toco, en la funcion del 
-# enemigo se borra al enemigo, y se borra la bala del lienzo (usando el entero de la bala). 
-#
-# se puede quitar la bala de lista global con slicing[1][2]. 
-#
-# luego mismo vara para quitar vidas pero con lo de balas enemikas. en el codigo de las balas, 
-# las amikas puede checkear si una bala enemika los toco y asi se desaparecen y desaparecen a la bala que las toco, y se
-# sacan las dos de sus listas respectivas con slicing[1][2]
-#
-# [1] al borrar las balas, la funcion lienzo.bbox(bala) va a retornan None evenz de las coordenadas, entonces checkearlas es crinch,
-# mejor evitar
-#
-# [2] otro problema es una condicion de carrera entre las balas amikas y enemikas. si una itera y encuentra que toco
-# a la otra, se va a desaparecer y mandar pa fuera antes de que la otra haga lo mismo, entonces la otra nunca desaparece
-
+# lista de balas
 amikos = []
+# lista de enemigos y balas enemigas
 enemikos = []
+# cantidad de vida
 bidas = 3
+# cantidad de vida que selecciono con el nivel de dificultad
 bidaselec = 3
+# nivel de dificultad
 dificultad = 1
+# nivel de dificultad que selecciono en las opciones
 difselec = 1
+# puntos
 puntaje = 0
+# nombre, cambia con las opciones
 nombre = "ULTRAGAMER"
+# tiempo transcurrido
 tiempo = 0
 
 def pantallainicial():
@@ -66,7 +52,8 @@ def pantallainicial():
 	mmenu = tk.Frame(menu)
 	mmenu.pack()
 	mmenu.configure(bg="Black")
-	
+
+	# cierra el menu, y abre la pantalla de juego
 	def jugar():
 		menu.destroy()
 		inicio()
@@ -111,12 +98,14 @@ def pantallainicial():
 			difselec = d
 			bidaselec = b
 
+		# borra el rotulo al quitar todos los objetos dentro del marco (solo esta el rotulo), y lo vuelve a poner, actualizado
 		def repackrotdif(dif):
 			for widget in mrotdif.winfo_children():
 				widget.destroy()
 			rotdificultad = tk.Label(mrotdif, text="Dificultad: " + dif, font=('Arial', 18), bg="black", fg="white")
 			rotdificultad.pack(expand=True, fill=tk.BOTH)
-			
+
+		# cambia dificultad y actualiza rotulo	
 		def facil():
 			confdificultad(1,6)
 			repackrotdif("Facil")
@@ -135,7 +124,8 @@ def pantallainicial():
 		btn2.pack()
 		btn3 = tk.Button(mtexto, text="PESADILLA", font=('Arial', 18), command=pesadilla)
 		btn3.pack()
-	
+
+		# regresa a pantalla principal
 		def repackinicial():
 			mtexto.destroy()
 			mregresar.destroy()
@@ -166,9 +156,12 @@ def pantallainicial():
 		rottexto = tk.Label(menu, text="Puntajes", bg="black", fg="white", font=('Arial', 24))
 		rottexto.pack(pady=20, side=tk.TOP)
 
+		# abre archivo, lo parte en lineas y las mete como elementos de una lista
 		with open("puntajes.txt") as f:
 		    lineas = f.read().splitlines()
-		
+
+		# parte cada elemento en dos elementos: el nombre y el puntaje, y lo mete devuelta en la lista como
+		# una sublista
 		def partir(lineas, puntajes):
 			if lineas == []:
 				return puntajes
@@ -177,6 +170,7 @@ def pantallainicial():
 				l = [l[0]] + [int(l[1])]
 				return partir(lineas[1:], puntajes + [l])
 
+		# sortea la lista por puntajes
 		def sortear(lista, n, i):
 			if i == 0:
 				return lista
@@ -196,6 +190,7 @@ def pantallainicial():
 		puntajes = sortear(puntajes, len(puntajes)-1, len(puntajes)-1)
 		puntajes = puntajes[:7]
 
+		# se ven los puntajes
 		rotpuntajes = tk.Label(menu, text="#1 " + puntajes[0][0] + " " + str(puntajes[0][1]) + "\n" + \
 		"#2 " + puntajes[1][0] + " " + str(puntajes[1][1]) + "\n" + \
 		"#3 " + puntajes[2][0] + " " + str(puntajes[2][1]) + "\n" + \
@@ -208,7 +203,8 @@ def pantallainicial():
 		mregresar = tk.Frame(menu)
 		mregresar.pack(anchor="sw")
 		mregresar.configure(bg="Black")
-	
+
+		# "regresa" a la pantalla principal
 		def repackinicial():
 			rottexto.destroy()
 			rotpuntajes.destroy()
@@ -232,7 +228,8 @@ def pantallainicial():
 	
 	imcred = Image.open("yo.png")
 	phcred = ImageTk.PhotoImage(imcred)
-			
+
+	# funcion de creditos, con una imagen mia e informacion
 	def creditos():
 		for widget in menu.winfo_children():
 			widget.pack_forget()
@@ -281,7 +278,8 @@ def pantallainicial():
 	
 	bcreditos = tk.Button(mmenu, text="Creditos", font=('Arial', 18), command=creditos)
 	bcreditos.pack(pady=10)
-	
+
+	# quita la musiquita y cierra la ventana
 	def salir():
 		pygame.mixer.music.stop()
 		pygame.mixer.music.unload()
@@ -291,7 +289,8 @@ def pantallainicial():
 	bsalir.pack(pady=10)
 		
 	menu.mainloop()
-	
+
+# va incrementando la dificultad cada segundo
 def mas_dificil():
     global dificultad
     while dificultad:
@@ -304,6 +303,7 @@ def inicio():
     venjuego.title("ACCION")
     venjuego.geometry("1920x1080")
 
+	# musiquita bien linda
     pygame.mixer.music.stop()
     pygame.mixer.music.unload()
     pygame.mixer.music.load("juego.ogg")
@@ -315,6 +315,8 @@ def inicio():
     lienzo = tk.Canvas(venjuego, width=1920, height=1040, bg="black")
     lienzo.pack()
 
+	# abre las estadisticas por primera vez
+	
     global nombre
     rotnombre = tk.Label(marcoestad, text=str(nombre), font=('Arial', 18))
     rotnombre.pack(expand=True, fill=tk.BOTH, side=tk.LEFT)
@@ -345,6 +347,7 @@ def inicio():
     rottiempo = tk.Label(marcoestad, text="tiempo: " + str(tiempo), font=('Arial', 18))
     rottiempo.pack(expand=True, fill=tk.BOTH, side=tk.LEFT)
 
+	# salir del juego, hace que pierda basicamente
     def rendirse():
     	for widget in venjuego.winfo_children():
     		widget.destroy()
@@ -352,7 +355,8 @@ def inicio():
 
     btnrendirse = tk.Button(marcoestad, text="RENDIRSE", font=('Arial', 18), command=rendirse)
     btnrendirse.pack(expand=True, fill=tk.BOTH, side=tk.LEFT)
-    
+
+    # guarda todas las imagenes en memoria, para usar despues
     phjugador = ImageTk.PhotoImage(Image.open("jugador.png"))
     phbala = ImageTk.PhotoImage(Image.open("bala.png"))
     phberde = ImageTk.PhotoImage(Image.open("bichoberde.png")) # pyimage5
@@ -361,7 +365,8 @@ def inicio():
     phmisil = ImageTk.PhotoImage(Image.open("misil.png")) # pyimage8
 
     jugador = lienzo.create_image(150, 540, image=phjugador)
-		
+
+	# pantalla de juego terminado
     def seacabo():
     	pygame.mixer.music.stop()
     	pygame.mixer.music.unload()
@@ -383,6 +388,7 @@ def inicio():
     	rotestad.configure(bg="#FFFAE4")
     	rotestad.pack(pady=10)
 
+		# funciones para continuar despues de perder
     	def salir():
     		with open("puntajes.txt", "a") as archivo:
     		    archivo.write(nombre + ": " + str(puntaje) + "\n")
@@ -407,7 +413,7 @@ def inicio():
     	btnsalir = tk.Button(marcotexto, text="Salir", font=('Arial', 18), command=salir)
     	btnsalir.pack()
 		
-		
+	# funcion para ver estadisticas, va en la parte superior de la pantalla y se actualiza
     def estad():
         global enemikos
         colisiones(enemikos, 1)
@@ -439,6 +445,7 @@ def inicio():
         btnrendirse = tk.Button(marcoestad, text="RENDIRSE", font=('Arial', 18), command=rendirse)
         btnrendirse.pack(expand=True, fill=tk.BOTH, side=tk.LEFT)
 
+	# toma el tiempo y revisa a ver si se murio el jugador o paso de nivel
     def reloc():
         while True:
             global tiempo
@@ -457,7 +464,8 @@ def inicio():
             		widget.destroy()
             	seacabo()
             estad()
-    
+
+    # quita las balas o enemigos de sus listas globales si estan muertos
     def reciclaje(objeto, i, paso):
         if paso == 0:
             global enemikos
@@ -478,12 +486,16 @@ def inicio():
             else:
                 return reciclaje(objeto, i+1, 1)
 
-        
+    # revisa si un objeto esta colisionando con algun elemento de la lista
+    # si hay colision, lo borra y llama a reciclaje() para sacarlo de su lista global
+    # ej: un enemigo con alguna bala del jugador
     def colisiones(lista, objeto):
         if lista == []:
             return False
         o = lienzo.bbox(objeto)
         l = lienzo.bbox(lista[0])
+
+        # los seis casos de colisiones. ver documentacion externa
         if (l != None) and (o != None) and (\
         (o[0] < l[0] < o[2] < l[2] and l[1] < o[1] < l[3] < o[3]) or \
         (o[0] < l[0] < o[2] < l[2] and o[1] < l[1] < o[3] < l[3]) or \
@@ -506,7 +518,7 @@ def inicio():
         else:
             return colisiones(lista[1:], objeto)
 
-             
+    # funcion de movimiento
     def movimiento():
 
         def arriba(event=None):
@@ -529,6 +541,7 @@ def inicio():
             if coord[2] <= lienzo.winfo_width():
         	    lienzo.move(jugador, 25, 0)
 
+		# crea una bala, inicia un hilo que la mueve y checkea si se salio del lienzo
         def disparo(event=None):
         	jugador_coord = lienzo.bbox(jugador)
         	bala = lienzo.create_image(jugador_coord[2], jugador_coord[3]-50, image=phbala)
@@ -557,7 +570,9 @@ def inicio():
         venjuego.bind('d', derecha)
         venjuego.bind('<Button-1>', disparo)
 
-
+	# funcion de enemigo virus
+	# si es berde, es mas lento y vale menos puntos
+	# si es rojo, es mas violento pero vale mas
     def birus(color):
         bicho = lienzo.create_image(random.randint(1920, 2000), random.randint(50, 950), image=color)
 
@@ -576,13 +591,14 @@ def inicio():
                 yveloz = random.randint(4, 8)
             else:
                 yveloz = random.randint(-8, -4)
-        
+                
+        # funcion de movimiento, corre en un hilo
         def mov(xveloz, yveloz):
             global amikos
             coord = lienzo.bbox(bicho)
             while (coord != None) and not (colisiones(amikos, bicho)) and coord[2] > 0:
                 if (coord[3] >= (lienzo.winfo_height()) or coord[1] < 0):
-                    yveloz = -yveloz
+                    yveloz = -yveloz # si pega con techo o piso, rebota
                 lienzo.move(bicho, xveloz, yveloz)
                 time.sleep(0.01)
                 coord = lienzo.bbox(bicho)
@@ -590,7 +606,7 @@ def inicio():
             global dificultad
             if coord == None and color == phberde:
                 puntaje += dificultad
-                estad()
+                estad() # se actualiza las estadisticas cada vez que un enemigo se muere
             if coord == None and color == phrojo:
                 puntaje += dificultad*4
                 estad()
@@ -602,7 +618,8 @@ def inicio():
         mov_hilo.daemon = True
         mov_hilo.start()
 
-
+	# funcion de marsiano
+	# se quedan atras y disparan misiles, valen muchos puntos
     def marsiano():
         bicho = lienzo.create_image(random.randint(1800, 1900), random.randint(100, 900), image=phmarsiano)
 
@@ -637,13 +654,15 @@ def inicio():
             			lienzo.delete(bala)
             			reciclaje(bala, 0, 0)
 
+				# tantos hilos pueden ser la causa del mal rendimiento
             	bala_hilo = Thread(target=bala_mov)
             	bala_hilo.daemon = True
             	bala_hilo.start()
 
             while (coord != None) and not (colisiones(amikos, bicho)) and coord[2] > 0:
                 global dificultad
-                
+
+                # dependiendo de la dificultad, tiran misiles mas seguido
                 if dificultad > 120 and dificultad < 150:
                     if i > 1:
                         i = 0
@@ -678,7 +697,8 @@ def inicio():
         mov_hilo.daemon = True
         mov_hilo.start()
             
-        
+    # funciones para generar enemigos
+    # se generan mas dependiendo de la dificultad
     def gen_berde():
         global dificultad
         i = 1
@@ -717,7 +737,8 @@ def inicio():
     				i += 200
     		else:
     			time.sleep(5)
-				
+
+	# metemos todo en hilos
     def hilos():
         dif_hilo = Thread(target=mas_dificil)
         dif_hilo.daemon = True
@@ -742,8 +763,10 @@ def inicio():
         marsiano_hilo = Thread(target=gen_marsiano)
         marsiano_hilo.daemon = True
         marsiano_hilo.start()
-        
+
+    # luego corremos dichos hilos
     hilos()
     venjuego.mainloop()
 
+# inicio
 pantallainicial()
